@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SELENE — Caso de estudio · Facundo Duarte</title>
+  <meta name="description" content="SELENE, explorador de sitios de alunizaje del equipo Hubble27 en NASA Space Apps 2026. Mi parte: el motor de cálculo con datos de JPL Horizons y LOLA, las validaciones y la integración continua.">
+  <link rel="canonical" href="https://facuduarte-dev.github.io/selene/">
+  <meta name="theme-color" content="#ffffff">
+
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="es_UY">
+  <meta property="og:site_name" content="Facundo Duarte">
+  <meta property="og:title" content="SELENE — Caso de estudio">
+  <meta property="og:description" content="Calcular la luz y la comunicación con la Tierra en el polo sur lunar con datos reales de NASA.">
+  <meta property="og:url" content="https://facuduarte-dev.github.io/selene/">
+  <meta property="og:image" content="https://facuduarte-dev.github.io/assets/img/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;700&family=Geist+Mono&display=swap">
+  <link rel="stylesheet" href="../assets/css/estilos.css">
+</head>
+<body>
+  <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+  <header class="cabecera">
+    <div class="contenedor">
+      <a class="marca" href="../" aria-label="Facundo Duarte, inicio">FD<span>.</span></a>
+      <nav class="nav" aria-label="Principal">
+        <a href="../#trabajo">Trabajo</a>
+        <a href="../#metodo" class="opcional">Método</a>
+        <a href="../#formacion" class="opcional">Formación</a>
+        <a href="../#contacto">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <section class="caso-portada contenedor" aria-labelledby="titulo">
+      <a class="volver" href="../#trabajo">← Volver a los proyectos</a>
+      <h1 id="titulo">SELENE</h1>
+      <p class="bajada">Un explorador web para elegir dónde y cuándo alunizar en el polo sur de la Luna, según cuánta luz solar hay y cuándo se ve la Tierra.</p>
+
+      <dl class="ficha">
+        <div><dt class="mono">Contexto</dt><dd>NASA Space Apps Challenge 2026, sede Salto/Paysandú</dd></div>
+        <div><dt class="mono">Equipo</dt><dd>Hubble27, seis integrantes</dd></div>
+        <div><dt class="mono">Mi parte</dt><dd>Motor de cálculo, datos de NASA, validaciones e integración continua</dd></div>
+        <div><dt class="mono">Enlaces</dt><dd><a class="enlace enlace-acento externo" href="https://selene-space-apps.vercel.app/" rel="noopener">Demo en vivo</a><br><a class="enlace externo" href="https://github.com/lucioooofacc/Selene-SpaceApps" rel="noopener">Código</a></dd></div>
+      </dl>
+
+      <figure class="figura">
+        <div class="marco">
+          <img src="../assets/img/selene-mapa-calor.webp" width="1800" height="1012" fetchpriority="high" alt="Pantalla principal de SELENE: ranking de sitios a la izquierda, la Luna en 3D coloreada por elevación en el centro y los parámetros de la misión a la derecha.">
+        </div>
+        <figcaption><span class="tipo tipo-real">Captura real</span> Pantalla principal con la capa de elevación LOLA. Fig. 1</figcaption>
+      </figure>
+    </section>
+
+    <div class="contenedor cuerpo seccion">
+      <nav class="indice" aria-label="En esta página">
+        <span class="mono">En esta página</span>
+        <ol>
+          <li><a href="#problema">El problema</a></li>
+          <li><a href="#aportes">Qué hice yo</a></li>
+          <li><a href="#calculo">Cómo funciona el cálculo</a></li>
+          <li><a href="#validacion">Cómo lo validé</a></li>
+          <li><a href="#resultado">Resultado</a></li>
+        </ol>
+      </nav>
+
+      <div class="texto">
+        <section id="problema" aria-labelledby="h-problema">
+          <h2 id="h-problema">El problema</h2>
+          <p>El desafío 4 de Space Apps 2026 pedía crear un explorador de misiones lunares. Elegimos enfocarnos en el polo sur, donde apuntan las próximas misiones. Allí el Sol apenas se levanta sobre el horizonte, y unos pocos metros de relieve deciden si un módulo tiene energía o queda a oscuras.</p>
+          <p>Para comparar sitios hacen falta dos respuestas para cada hora del período de la misión: si hay luz solar para generar energía y si se ve la Tierra para comunicarse de forma directa.</p>
+          <p class="nota">SELENE es una creación colectiva del equipo Hubble27. En esta página describo solo mis aportes, que se pueden comprobar en las pull requests del repositorio.</p>
+        </section>
+
+        <section id="aportes" aria-labelledby="h-aportes">
+          <h2 id="h-aportes">Qué hice yo</h2>
+          <p>Mi trabajo se concentró en la parte científica del sistema: reemplazar las aproximaciones iniciales por datos reales de NASA y comprobar que los resultados tuvieran sentido físico.</p>
+          <ul>
+            <li><strong>Efemérides de JPL Horizons.</strong> Integré series horarias reproducibles de la posición del Sol y de la Tierra vistas desde cada sitio, y las conecté al cálculo.</li>
+            <li><strong>Horizonte real a partir de LOLA.</strong> Calculé el horizonte topográfico de cada sitio usando los modelos de elevación del altímetro láser de la sonda LRO, primero en el polo sur y después en Chang’e 4 y Apollo 11.</li>
+            <li><strong>Puntos elegidos por el usuario.</strong> Datos reales para cualquier punto del mapa, no solo para los sitios cargados de antemano.</li>
+            <li><strong>Una sola regla de visibilidad.</strong> Unifiqué el criterio para decidir si el Sol y la Tierra están visibles, teniendo en cuenta el tamaño aparente de su disco, para que el mapa y los escenarios den el mismo resultado.</li>
+            <li><strong>Motor del mapa de calor.</strong> El cálculo del mapa de luz y comunicación del polo sur con datos reales.</li>
+            <li><strong>Datos de los sitios.</strong> Validé coordenadas y procedencia, y corregí la ubicación de Shackleton según la tabla oficial de NASA.</li>
+            <li><strong>Pruebas e integración continua.</strong> Separé las validaciones contra datos reales de las pruebas unitarias y configuré GitHub Actions para que todo corra en cada pull request.</li>
+          </ul>
+          <p>Cada uno de estos cambios quedó documentado en el registro de decisiones del proyecto, con el contexto, la solución y las alternativas descartadas.</p>
+        </section>
+
+        <section id="calculo" aria-labelledby="h-calculo">
+          <h2 id="h-calculo">Cómo funciona el cálculo</h2>
+          <p>Para cada sitio e instante, el motor compara la altura del Sol y de la Tierra con la altura del horizonte en esa misma dirección. Si el disco queda por encima del relieve, cuenta como visible.</p>
+          <div class="desplazable">
+            <table class="tabla">
+              <caption><span class="tipo">Diagrama</span> Flujo de datos del motor, simplificado.</caption>
+              <thead><tr><th>Fuente</th><th>Qué aporta</th><th>Dónde se usa</th></tr></thead>
+              <tbody>
+                <tr><td>JPL Horizons</td><td>Dirección y tamaño aparente del Sol y de la Tierra, hora por hora</td><td>Todos los cálculos de luz y comunicación</td></tr>
+                <tr><td>LOLA (LRO)</td><td>Relieve: altura del horizonte en cada dirección</td><td>Horizonte de cada sitio y atlas del mapa de calor</td></tr>
+                <tr><td>Motor de visibilidad</td><td>Una sola regla: qué parte del disco queda sobre el horizonte</td><td>Escenarios, ranking de fechas y mapa de calor</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <figure class="figura">
+            <div class="marco">
+              <img src="../assets/img/selene-horizonte-lola.webp" width="1440" height="880" loading="lazy" alt="Gráfico del horizonte de Shackleton, Malapert y Cabeus en los 360 grados: en verde el horizonte real calculado con LOLA y en gris el horizonte aproximado que usaba la versión anterior.">
+            </div>
+            <figcaption><span class="tipo tipo-real">Gráfico generado por el código</span> Horizonte real calculado con LOLA (verde) frente al horizonte aproximado anterior (gris), en tres sitios del polo sur. Fig. 2</figcaption>
+          </figure>
+          <p>El gráfico muestra por qué valía la pena: en los tres sitios el horizonte real se aparta varios grados de la aproximación, y en el polo sur unos pocos grados alcanzan para tapar el Sol.</p>
+        </section>
+
+        <section id="validacion" aria-labelledby="h-validacion">
+          <h2 id="h-validacion">Cómo lo validé</h2>
+          <p>Un cálculo con datos reales puede estar mal y parecer correcto. Por eso escribí controles físicos: propiedades conocidas de la Luna que el resultado tiene que cumplir. Si un cambio las rompe, la integración continua lo frena.</p>
+          <div class="desplazable">
+            <table class="tabla">
+              <caption>Valores medidos en las pruebas del repositorio (<code>controles-fisicos.test.js</code> y <code>docs/VALIDACION.md</code>).</caption>
+              <thead><tr><th>Control</th><th>Esperado</th><th>Medido</th></tr></thead>
+              <tbody>
+                <tr><td>Altura máxima del Sol en Shackleton</td><td class="num">1,74° a 2,18°</td><td class="num">2,05°</td></tr>
+                <tr><td>Altura máxima del Sol en Malapert</td><td class="num">5,21° a 5,65°</td><td class="num">5,53°</td></tr>
+                <tr><td>Mes sinódico medio en Apollo 11</td><td class="num">29,5306 ± 0,02 d</td><td class="num">29,5336 d</td></tr>
+                <tr><td>Tierra desde Apollo 11 (cara visible)</td><td class="num">siempre &gt; 50°</td><td class="num">58,0° a 73,7°</td></tr>
+                <tr><td>Tierra desde Chang’e 4 (cara oculta)</td><td class="num">siempre &lt; −30°</td><td class="num">−51,0° a −37,7°</td></tr>
+                <tr><td>Sol en Cabeus, cráter en sombra permanente</td><td class="num">0 % cada mes</td><td class="num">0 % en 12 meses</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>El límite para la altura del Sol sale de la geometría: la colatitud del sitio más la oblicuidad del ecuador lunar (1,543°). Las tolerancias de cada control están documentadas junto a su justificación.</p>
+        </section>
+
+        <section id="resultado" aria-labelledby="h-resultado">
+          <h2 id="h-resultado">Resultado</h2>
+          <p>El equipo entregó SELENE el 15 de noviembre de 2026, publicada en Vercel y con integración continua en verde. En la verificación final, la batería del proyecto tenía 226 pruebas: 223 pasaban, ninguna fallaba y 3 se omitían porque requieren descargar los modelos LOLA completos.</p>
+          <figure class="figura">
+            <div class="marco">
+              <img src="../assets/img/selene-comparar.webp" width="1800" height="1012" loading="lazy" alt="Página de comparación de SELENE con Shackleton y Malapert lado a lado, su viabilidad y la fuente de los datos de cada sitio.">
+            </div>
+            <figcaption><span class="tipo tipo-real">Captura real</span> Comparación entre dos sitios, con la fuente de los datos a la vista. Fig. 3</figcaption>
+          </figure>
+        </section>
+      </div>
+    </div>
+
+    <div class="contenedor">
+      <a class="siguiente" href="../parkex/">
+        <span class="mono">Siguiente proyecto</span>
+        <strong>ParkEx →</strong>
+      </a>
+    </div>
+  </main>
+
+  <footer class="pie">
+    <div class="contenedor">
+      <span>© <span id="anio">2026</span> Facundo Duarte · Paysandú, Uruguay</span>
+      <a class="enlace" href="mailto:facuduartedev@gmail.com">facuduartedev@gmail.com</a>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js" defer></script>
+</body>
+</html>

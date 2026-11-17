@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://facuduarte-dev.github.io/sitemap.xml

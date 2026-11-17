@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ParkEx — Caso de estudio · Facundo Duarte</title>
+  <meta name="description" content="ParkEx: monitoreo en tiempo real de estacionamientos y verificación de plazas reservadas con visión por computadora. Premiado en la III Semana Académica de Ingeniería en Logística de UTEC.">
+  <link rel="canonical" href="https://facuduarte-dev.github.io/parkex/">
+  <meta name="theme-color" content="#ffffff">
+
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="es_UY">
+  <meta property="og:site_name" content="Facundo Duarte">
+  <meta property="og:title" content="ParkEx — Caso de estudio">
+  <meta property="og:description" content="Del sensor de la plaza al plano en vivo, con un lector de matrículas que no guarda matrículas.">
+  <meta property="og:url" content="https://facuduarte-dev.github.io/parkex/">
+  <meta property="og:image" content="https://facuduarte-dev.github.io/assets/img/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;700&family=Geist+Mono&display=swap">
+  <link rel="stylesheet" href="../assets/css/estilos.css">
+</head>
+<body>
+  <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+  <header class="cabecera">
+    <div class="contenedor">
+      <a class="marca" href="../" aria-label="Facundo Duarte, inicio">FD<span>.</span></a>
+      <nav class="nav" aria-label="Principal">
+        <a href="../#trabajo">Trabajo</a>
+        <a href="../#metodo" class="opcional">Método</a>
+        <a href="../#formacion" class="opcional">Formación</a>
+        <a href="../#contacto">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <section class="caso-portada contenedor" aria-labelledby="titulo">
+      <a class="volver" href="../#trabajo">← Volver a los proyectos</a>
+      <h1 id="titulo">ParkEx</h1>
+      <p class="bajada">Monitoreo en tiempo real de estacionamientos privados, con verificación automática de las plazas reservadas para personas con discapacidad.</p>
+
+      <dl class="ficha">
+        <div><dt class="mono">Contexto</dt><dd>III Semana Académica de Ingeniería en Logística, UTEC Rivera, octubre de 2026</dd></div>
+        <div><dt class="mono">Equipo</dt><dd>Cinco autores; soy cofundador</dd></div>
+        <div><dt class="mono">Mi parte</dt><dd>La idea, el lector de matrículas y la exposición</dd></div>
+        <div><dt class="mono">Enlaces</dt><dd><a class="enlace enlace-acento externo" href="https://github.com/facuduarte-dev/ParkEx" rel="noopener">Código</a><br><a class="enlace externo" href="https://doi.org/10.5281/zenodo.23377101" rel="noopener">Publicación</a></dd></div>
+      </dl>
+
+      <div class="premios">
+        <div><strong>Mejor exposición oral</strong><span>Premio al proyecto, junto a mis compañeros</span></div>
+        <div><strong>Excelencia académica</strong><span>Premio al proyecto, junto a mis compañeros</span></div>
+        <div><strong>Resumen publicado</strong><span>Libro de resúmenes del evento, con DOI</span></div>
+      </div>
+    </section>
+
+    <div class="contenedor cuerpo seccion">
+      <nav class="indice" aria-label="En esta página">
+        <span class="mono">En esta página</span>
+        <ol>
+          <li><a href="#problema">El problema</a></li>
+          <li><a href="#rol">Mi rol</a></li>
+          <li><a href="#sistema">Cómo funciona</a></li>
+          <li><a href="#lector">El lector de matrículas</a></li>
+          <li><a href="#reconocimiento">Reconocimiento</a></li>
+        </ol>
+      </nav>
+
+      <div class="texto">
+        <section id="problema" aria-labelledby="h-problema">
+          <h2 id="h-problema">El problema</h2>
+          <p>En un estacionamiento privado (un edificio, un shopping, un sanatorio) los conductores recorren niveles enteros buscando un lugar libre. Al mismo tiempo, las plazas reservadas para personas con discapacidad suelen quedar ocupadas por vehículos sin permiso, y el operador no tiene una forma práctica de enterarse.</p>
+          <p>ParkEx ataca las dos cosas con hardware de bajo costo: un sensor por plaza, una cámara solo en las plazas reservadas y un sitio web con el plano de cada nivel en vivo.</p>
+          <p class="nota">El proyecto empezó pensado para la vía pública. Lo acotamos a estacionamientos privados porque así se resolvían de raíz los problemas más serios: el clima afecta a los sensores, el OCR falla de noche y no existe un padrón público de permisos.</p>
+        </section>
+
+        <section id="rol" aria-labelledby="h-rol">
+          <h2 id="h-rol">Mi rol</h2>
+          <ul>
+            <li><strong>La idea.</strong> Propuse el proyecto y soy uno de sus cofundadores.</li>
+            <li><strong>El lector de matrículas.</strong> Desarrollé en Java el programa que lee la chapa a partir de la cámara. Empezó como un repositorio propio, <a class="enlace enlace-acento externo" href="https://github.com/facuduarte-dev/matricula-ocr" rel="noopener">Matrícula OCR</a>, y después se integró en ParkEx como el módulo <code>vision/</code>, donde el equipo lo amplió.</li>
+            <li><strong>La exposición.</strong> Participé en la presentación del proyecto en UTEC.</li>
+          </ul>
+        </section>
+
+        <section id="sistema" aria-labelledby="h-sistema">
+          <h2 id="h-sistema">Cómo funciona</h2>
+          <p>Recorré el camino de un auto que entra a una plaza reservada.</p>
+
+          <div class="recorrido" data-recorrido>
+            <p class="mono" style="margin:0 0 12px"><span class="tipo">Diagrama</span> Recorrido por pasos</p>
+            <ol class="recorrido-pasos">
+              <li><button type="button" aria-pressed="true"><span>Paso 1</span>Sensor</button></li>
+              <li><button type="button" aria-pressed="false"><span>Paso 2</span>Puente serie</button></li>
+              <li><button type="button" aria-pressed="false"><span>Paso 3</span>API y base</button></li>
+              <li><button type="button" aria-pressed="false"><span>Paso 4</span>Lector</button></li>
+              <li><button type="button" aria-pressed="false"><span>Paso 5</span>Plano y alertas</button></li>
+            </ol>
+            <div class="recorrido-detalle" aria-live="polite">
+              <div><p><strong>Sensor ultrasónico + Arduino.</strong> Un HC-SR04 mide la distancia y el Arduino decide si la plaza está ocupada. No tiene WiFi ni credenciales: solo escribe por el puerto serie.</p></div>
+              <div><p><strong>Puente serie (Node.js).</strong> Una computadora del parking traduce cada línea del Arduino en una petición a la API. Toda la conectividad vive en esa única máquina.</p></div>
+              <div><p><strong>API y Supabase.</strong> Una API en Express valida el evento y lo guarda en PostgreSQL. Supabase Realtime avisa al instante a los navegadores conectados.</p></div>
+              <div><p><strong>Lector de matrículas (Java).</strong> Si la plaza es reservada, la cámara toma varias fotos, el lector busca la chapa, comprueba el distintivo de discapacidad y reporta solo un hash de la matrícula y el resultado.</p></div>
+              <div><p><strong>Plano en vivo y alertas.</strong> El plano SVG del nivel se repinta sin recargar la página. Si el vehículo no tiene distintivo, aparece una alerta para que la revise una persona: el sistema no sanciona.</p></div>
+            </div>
+            <div class="recorrido-control" hidden>
+              <button type="button" data-anterior>← Anterior</button>
+              <button type="button" data-siguiente>Siguiente →</button>
+            </div>
+          </div>
+
+          <figure class="figura">
+            <div class="marco">
+              <img src="../assets/img/parkex-arquitectura.webp" width="1600" height="1130" loading="lazy" alt="Diagrama de arquitectura de ParkEx con tres zonas: la plaza (sensor, Arduino y webcam), la computadora del parking (puente serie y lector de chapas) y Supabase (API REST, PostgreSQL, Realtime), conectadas al navegador.">
+            </div>
+            <figcaption><span class="tipo">Diagrama</span> Arquitectura completa, tomada de la documentación del repositorio. Fig. 1</figcaption>
+          </figure>
+
+          <figure class="figura">
+            <div class="marco">
+              <img src="../assets/img/parkex-tinkercad.webp" width="1600" height="684" loading="lazy" alt="Circuito en Tinkercad: un Arduino Uno conectado a un sensor ultrasónico HC-SR04 y a dos LED, uno rojo y uno verde.">
+            </div>
+            <figcaption><span class="tipo tipo-real">Diseño real del circuito</span> Prototipo del sensor de plaza en Tinkercad. Fig. 2</figcaption>
+          </figure>
+          <!-- Fotos reales del prototipo y de la exposición: pendientes de elegir con Facundo. -->
+        </section>
+
+        <section id="lector" aria-labelledby="h-lector">
+          <h2 id="h-lector">El lector de matrículas</h2>
+          <p>Leer una chapa con una cámara común falla seguido: reflejos, tornillos, ángulos. En lugar de confiar en una sola foto, el lector toma varias y solo acepta un resultado cuando las lecturas coinciden.</p>
+
+          <h3>Del cuadro a la matrícula</h3>
+          <ul>
+            <li><strong>Detección.</strong> Con OpenCV busca rectángulos con forma de chapa, combinando bordes y luminosidad, porque las chapas claras sobre autos oscuros se separan mejor por brillo que por su contorno.</li>
+            <li><strong>Lectura.</strong> Cada candidato se amplía, se ecualiza y pasa por Tesseract con distintos umbrales.</li>
+            <li><strong>Normalización.</strong> El texto se ajusta a los formatos de chapa válidos: Mercosur (<code>ABC1234</code>) y el uruguayo anterior (<code>ABC123</code>).</li>
+            <li><strong>Consenso.</strong> Solo hay resultado si una misma matrícula aparece en al menos tres lecturas con confianza suficiente. Si no, se vota carácter por carácter. Si tampoco alcanza, el resultado es <code>no_verificable</code>.</li>
+            <li><strong>Privacidad.</strong> La matrícula sale de la computadora del parking solo como HMAC-SHA256. Las imágenes se procesan en memoria y se descartan.</li>
+          </ul>
+
+          <div class="desplazable">
+            <table class="tabla">
+              <caption><span class="tipo">Ilustración</span> Lecturas de ejemplo para explicar el consenso. No es una salida real del programa.</caption>
+              <thead><tr><th>Foto</th><th>Lectura</th><th>Confianza</th><th>¿Cuenta?</th></tr></thead>
+              <tbody>
+                <tr><td class="num">1</td><td class="num">ABC1234</td><td class="num">0,86</td><td>Sí</td></tr>
+                <tr><td class="num">2</td><td class="num">A8C1234</td><td class="num">0,71</td><td>No coincide</td></tr>
+                <tr><td class="num">3</td><td class="num">ABC1234</td><td class="num">0,82</td><td>Sí</td></tr>
+                <tr><td class="num">4</td><td class="num">ABC1234</td><td class="num">0,79</td><td>Sí</td></tr>
+                <tr><td colspan="4">Tres coincidencias con confianza media de 0,82. Confianza combinada: 1 − (1 − 0,82)³ ≈ 0,99, por encima del mínimo de 0,80. Resultado: <code>ABC1234</code>, que se envía como hash.</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p>El lector funciona con fotos, webcams USB, la cámara del celular mediante DroidCam y streams HTTP. Está escrito en Java 17 con Maven, y tiene pruebas con JUnit 5 para el consenso, la normalización, el hash y la integración con Tesseract.</p>
+          <p class="nota">Una lectura dudosa nunca genera una alerta: el sistema prefiere no decir nada antes que acusar por error.</p>
+        </section>
+
+        <section id="reconocimiento" aria-labelledby="h-reconocimiento">
+          <h2 id="h-reconocimiento">Reconocimiento</h2>
+          <p>ParkEx se presentó en la III Semana Académica de Ingeniería en Logística de la Universidad Tecnológica del Uruguay (UTEC), Instituto Tecnológico Regional Norte, del 6 al 8 de octubre de 2026 en Rivera. El proyecto obtuvo los premios a Mejor exposición oral y a Excelencia académica.</p>
+          <p>El resumen del trabajo está publicado en el libro de resúmenes del evento:</p>
+          <p class="nota">Castro, J., Ligüera, C., Bazzano, L., Duarte, F. y Facchin, L. (2026). <em>ParkEx: monitoreo en tiempo real de la ocupación de posiciones y verificación automatizada de plazas reservadas mediante sensórica y visión por computadora.</em> En <em>Libro de resúmenes de la III Semana Académica de Ingeniería en Logística</em>. UTEC. <a class="enlace enlace-acento externo" href="https://doi.org/10.5281/zenodo.23377101" rel="noopener">doi.org/10.5281/zenodo.23377101</a></p>
+        </section>
+      </div>
+    </div>
+
+    <div class="contenedor">
+      <a class="siguiente" href="../selene/">
+        <span class="mono">Otro proyecto</span>
+        <strong>SELENE →</strong>
+      </a>
+    </div>
+  </main>
+
+  <footer class="pie">
+    <div class="contenedor">
+      <span>© <span id="anio">2026</span> Facundo Duarte · Paysandú, Uruguay</span>
+      <a class="enlace" href="mailto:facuduartedev@gmail.com">facuduartedev@gmail.com</a>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js" defer></script>
+</body>
+</html>
