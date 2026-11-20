@@ -163,6 +163,20 @@
             </table>
           </div>
 
+          <h3>Una ejecución real</h3>
+          <p>Corrí el lector sobre la foto de prueba que trae el repositorio, una chapa española. El detector encontró siete zonas candidatas; esta es la que contenía la matrícula:</p>
+          <figure class="figura" style="margin-top:16px">
+            <div class="marco" style="background:#fff;box-shadow:inset 0 0 0 1px var(--filete)">
+              <img src="../assets/img/parkex-ocr-candidato.webp" width="868" height="208" loading="lazy" alt="Recorte detectado por el lector: la chapa con el texto 0724 HPH sobre el frente de un auto rojo.">
+            </div>
+            <figcaption><span class="tipo tipo-real">Salida real del programa</span> Zona candidata que guardó el detector en modo diagnóstico, ampliada 4 veces. Fig. 3</figcaption>
+          </figure>
+          <pre class="consola" aria-label="Salida de la consola"><span class="mono-tenue">$ java -cp … com.parkex.ocr.Main image imagenes/matricula1.png</span>
+Mejor lectura: 0724HPH (0.50)
+RESULTADO: no_verificable</pre>
+          <p>La lectura es correcta, pero el resultado es <code>no_verificable</code>, y eso es lo que tiene que pasar: con una sola foto no hay tres lecturas que coincidan, así que el lector no se arriesga. En el parking toma varias fotos seguidas para poder confirmar.</p>
+          <p>En la misma corrida pasaron las 12 pruebas de JUnit del proyecto.</p>
+
           <p>El lector funciona con fotos, webcams USB, la cámara del celular mediante DroidCam y streams HTTP. Está escrito en Java 17 con Maven, y tiene pruebas con JUnit 5 para el consenso, la normalización, el hash y la integración con Tesseract.</p>
           <p class="nota">Una lectura dudosa nunca genera una alerta: el sistema prefiere no decir nada antes que acusar por error.</p>
         </section>

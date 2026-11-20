@@ -191,6 +191,12 @@ ul { margin: 0; padding: 0; }
 .evidencia a:hover { color: var(--acento); }
 .evidencia .num { font-family: var(--mono); font-size: 13px; color: var(--acento); }
 
+.consola {
+  margin: 16px 0 20px; padding: 16px 18px; border-radius: var(--radio); overflow-x: auto;
+  background: #121212; color: #f2f3f5; font: 14px/1.7 var(--mono);
+}
+.mono-tenue { color: #9a9ca5; }
+
 .arriba { text-decoration: none; }
 .arriba:hover { color: var(--acento); }
 
