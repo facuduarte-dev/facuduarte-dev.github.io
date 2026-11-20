@@ -14,7 +14,7 @@
   <meta property="og:title" content="SELENE — Caso de estudio">
   <meta property="og:description" content="Calcular la luz y la comunicación con la Tierra en el polo sur lunar con datos reales de NASA.">
   <meta property="og:url" content="https://facuduarte-dev.github.io/selene/">
-  <meta property="og:image" content="https://facuduarte-dev.github.io/assets/img/og-image.jpg">
+  <meta property="og:image" content="https://facuduarte-dev.github.io/assets/img/og-selene.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
@@ -70,6 +70,7 @@
           <li><a href="#calculo">Cómo funciona el cálculo</a></li>
           <li><a href="#validacion">Cómo lo validé</a></li>
           <li><a href="#resultado">Resultado</a></li>
+          <li><a href="#probar">Probalo acá</a></li>
         </ol>
       </nav>
 
@@ -94,6 +95,21 @@
             <li><strong>Pruebas e integración continua.</strong> Separé las validaciones contra datos reales de las pruebas unitarias y configuré GitHub Actions para que todo corra en cada pull request.</li>
           </ul>
           <p>Cada uno de estos cambios quedó documentado en el registro de decisiones del proyecto, con el contexto, la solución y las alternativas descartadas.</p>
+
+          <h3>La evidencia: mis pull requests integradas</h3>
+          <ul class="evidencia">
+            <li><a class="num" href="https://github.com/lucioooofacc/Selene-SpaceApps/pull/40" rel="noopener">#40</a><a href="https://github.com/lucioooofacc/Selene-SpaceApps/pull/40" rel="noopener">Efemérides reproducibles de JPL Horizons</a></li>
+            <li><a class="num" href="https://github.com/lucioooofacc/Selene-SpaceApps/pull/39" rel="noopener">#39</a><a href="https://github.com/lucioooofacc/Selene-SpaceApps/pull/39" rel="noopener">Preparación del producto polar LOLA</a></li>
+            <li><a class="num" href="https://github.com/lucioooofacc/Selene-SpaceApps/pull/50" rel="noopener">#50</a><a href="https://github.com/lucioooofacc/Selene-SpaceApps/pull/50" rel="noopener">Horizonte topográfico real desde LOLA</a></li>
+            <li><a class="num" href="https://github.com/lucioooofacc/Selene-SpaceApps/pull/54" rel="noopener">#54</a><a href="https://github.com/lucioooofacc/Selene-SpaceApps/pull/54" rel="noopener">Horizonte LOLA dentro del cálculo</a></li>
+            <li><a class="num" href="https://github.com/lucioooofacc/Selene-SpaceApps/pull/56" rel="noopener">#56</a><a href="https://github.com/lucioooofacc/Selene-SpaceApps/pull/56" rel="noopener">Efemérides de Horizons dentro del cálculo</a></li>
+            <li><a class="num" href="https://github.com/lucioooofacc/Selene-SpaceApps/pull/60" rel="noopener">#60</a><a href="https://github.com/lucioooofacc/Selene-SpaceApps/pull/60" rel="noopener">Datos reales para los puntos propios del mapa</a></li>
+            <li><a class="num" href="https://github.com/lucioooofacc/Selene-SpaceApps/pull/64" rel="noopener">#64</a><a href="https://github.com/lucioooofacc/Selene-SpaceApps/pull/64" rel="noopener">Política única de visibilidad del Sol y la Tierra</a></li>
+            <li><a class="num" href="https://github.com/lucioooofacc/Selene-SpaceApps/pull/65" rel="noopener">#65</a><a href="https://github.com/lucioooofacc/Selene-SpaceApps/pull/65" rel="noopener">Validaciones científicas, controles físicos y CI</a></li>
+            <li><a class="num" href="https://github.com/lucioooofacc/Selene-SpaceApps/pull/66" rel="noopener">#66</a><a href="https://github.com/lucioooofacc/Selene-SpaceApps/pull/66" rel="noopener">Motor del mapa de calor con datos reales</a></li>
+            <li><a class="num" href="https://github.com/lucioooofacc/Selene-SpaceApps/pull/96" rel="noopener">#96</a><a href="https://github.com/lucioooofacc/Selene-SpaceApps/pull/96" rel="noopener">Horizonte LOLA para Chang’e 4 y Apollo 11</a></li>
+            <li><a class="num" href="https://github.com/lucioooofacc/Selene-SpaceApps/pulls?q=is%3Apr+author%3Afacuduarte-dev+is%3Amerged" rel="noopener">+5</a><a href="https://github.com/lucioooofacc/Selene-SpaceApps/pulls?q=is%3Apr+author%3Afacuduarte-dev+is%3Amerged" rel="noopener">Datos de los sitios, documentación y correcciones: ver las 15</a></li>
+          </ul>
         </section>
 
         <section id="calculo" aria-labelledby="h-calculo">
@@ -150,6 +166,19 @@
             <figcaption><span class="tipo tipo-real">Captura real</span> Comparación entre dos sitios, con la fuente de los datos a la vista. Fig. 3</figcaption>
           </figure>
         </section>
+
+        <section id="probar" aria-labelledby="h-probar">
+          <h2 id="h-probar">Probalo acá</h2>
+          <p>Esta es la aplicación real publicada, no una simulación. Se carga solo si la pedís, porque incluye la Luna en 3D y datos pesados.</p>
+          <div class="demo" data-demo="https://selene-space-apps.vercel.app/" data-titulo="SELENE, aplicación publicada">
+            <img src="../assets/img/selene-sol-tierra.webp" width="1800" height="1012" loading="lazy" alt="">
+            <div class="demo-capa">
+              <span class="tipo tipo-real">Demo en vivo</span>
+              <button class="boton" type="button" hidden>Cargar SELENE aquí</button>
+              <p>En el celular conviene <a class="enlace externo" href="https://selene-space-apps.vercel.app/" rel="noopener" style="color:#fff">abrirla en una pestaña nueva</a>.</p>
+            </div>
+          </div>
+        </section>
       </div>
     </div>
 
@@ -164,6 +193,7 @@
   <footer class="pie">
     <div class="contenedor">
       <span>© <span id="anio">2026</span> Facundo Duarte · Paysandú, Uruguay</span>
+      <a class="arriba" href="#contenido">Volver arriba ↑</a>
       <a class="enlace" href="mailto:facuduartedev@gmail.com">facuduartedev@gmail.com</a>
     </div>
   </footer>

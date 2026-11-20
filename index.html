@@ -14,10 +14,10 @@
   <meta property="og:title" content="Facundo Duarte — Desarrollador Java y backend">
   <meta property="og:description" content="Proyectos con datos reales: SELENE (NASA Space Apps 2026), ParkEx (premiado en UTEC) y ClipBarber.">
   <meta property="og:url" content="https://facuduarte-dev.github.io/">
-  <meta property="og:image" content="https://facuduarte-dev.github.io/assets/img/og-image.jpg">
+  <meta property="og:image" content="https://facuduarte-dev.github.io/assets/img/og-inicio.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Captura de SELENE: mapa de calor del relieve lunar con sitios de alunizaje.">
+  <meta property="og:image:alt" content="Facundo Duarte, portfolio de desarrollo Java y backend, junto a una captura de SELENE.">
   <meta name="twitter:card" content="summary_large_image">
 
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
@@ -56,29 +56,49 @@
 
   <main id="contenido">
     <section class="portada contenedor" aria-labelledby="titulo">
+      <p class="estado mono"><span class="punto-estado" aria-hidden="true"></span>Paysandú, Uruguay · Busco prácticas o un primer puesto</p>
       <h1 id="titulo">Facundo<br>Duarte<span class="punto">.</span></h1>
 
       <div class="portada-pie">
         <div>
-          <p class="bajada">Estudiante de <strong>Tecnologías de la Información</strong> en Paysandú, Uruguay. Me enfoco en <strong>Java, backend y datos</strong>, y me gusta construir productos completos que se puedan probar.</p>
+          <p class="bajada">Estudiante de <strong>Tecnologías de la Información</strong>. Me enfoco en <strong>Java, backend y datos</strong>, y me gusta construir productos completos que se puedan probar.</p>
           <div class="portada-acciones">
             <a class="boton" href="#trabajo">Ver proyectos</a>
             <a class="boton boton-claro" href="#contacto">Contacto</a>
           </div>
         </div>
 
-        <a class="destacada" href="selene/">
-          <figure>
-            <div class="marco">
-              <img src="assets/img/selene-mapa-calor.webp" width="1800" height="1012" alt="SELENE mostrando la Luna en 3D coloreada por elevación, con los sitios de alunizaje Shackleton, Malapert, Chandrayaan-3 e IM-1 marcados." fetchpriority="high">
-            </div>
-            <figcaption>
-              <span class="mono">01 — SELENE · NASA Space Apps 2026 · <span class="tipo tipo-real">Captura real</span></span>
-              <span class="ver">Ver caso →</span>
-            </figcaption>
-          </figure>
-        </a>
+        <div class="visor" data-visor>
+          <div class="visor-pestanas" role="group" aria-label="Elegir proyecto">
+            <button type="button" aria-pressed="true" data-i="0"><span>01</span>SELENE</button>
+            <button type="button" aria-pressed="false" data-i="1"><span>02</span>ParkEx</button>
+            <button type="button" aria-pressed="false" data-i="2"><span>03</span>ClipBarber</button>
+          </div>
+          <a class="destacada" href="selene/" data-visor-enlace>
+            <figure>
+              <div class="marco">
+                <img data-visor-img src="assets/img/selene-mapa-calor.webp" width="1800" height="1012" alt="SELENE mostrando la Luna en 3D coloreada por elevación, con los sitios de alunizaje Shackleton, Malapert, Chandrayaan-3 e IM-1 marcados." fetchpriority="high">
+              </div>
+              <figcaption>
+                <span class="mono" data-visor-pie>SELENE · NASA Space Apps 2026 · <span class="tipo tipo-real">Captura real</span></span>
+                <span class="ver" data-visor-ver>Ver caso →</span>
+              </figcaption>
+            </figure>
+          </a>
+          <template data-visor-datos>
+            <div data-href="selene/" data-src="assets/img/selene-mapa-calor.webp" data-w="1800" data-h="1012" data-ver="Ver caso →" data-alt="SELENE mostrando la Luna en 3D coloreada por elevación, con los sitios de alunizaje Shackleton, Malapert, Chandrayaan-3 e IM-1 marcados.">SELENE · NASA Space Apps 2026 · <span class="tipo tipo-real">Captura real</span></div>
+            <div data-href="parkex/" data-src="assets/img/parkex-arquitectura.webp" data-w="1600" data-h="1130" data-contener data-ver="Ver caso →" data-alt="Diagrama de arquitectura de ParkEx: sensor y Arduino en la plaza, puente serie y lector de chapas en la computadora del parking, y Supabase conectado al navegador.">ParkEx · UTEC 2026 · <span class="tipo">Diagrama</span></div>
+            <div data-href="https://clip-barber.vercel.app/" data-src="assets/img/clipbarber-escritorio.webp" data-w="1440" data-h="900" data-ver="Ver sitio ↗" data-alt="Portada del sitio de CLIP Barber Studio con el título «Es tu estilo».">ClipBarber · Sitio publicado · <span class="tipo tipo-real">Captura real</span></div>
+          </template>
+        </div>
       </div>
+
+      <ul class="logros" aria-label="Logros verificables">
+        <li><a href="https://github.com/lucioooofacc/Selene-SpaceApps/pulls?q=is%3Apr+author%3Afacuduarte-dev+is%3Amerged" rel="noopener"><strong>15</strong><span>pull requests integradas en SELENE</span></a></li>
+        <li><a href="parkex/#reconocimiento"><strong>2</strong><span>premios a ParkEx en UTEC</span></a></li>
+        <li><a href="https://doi.org/10.5281/zenodo.23377101" rel="noopener"><strong>1</strong><span>resumen publicado con DOI</span></a></li>
+        <li><a href="selene/"><strong>NASA</strong><span>Space Apps Challenge 2026</span></a></li>
+      </ul>
     </section>
 
     <section id="trabajo" class="seccion contenedor" aria-labelledby="titulo-trabajo">
@@ -267,6 +287,7 @@
   <footer class="pie">
     <div class="contenedor">
       <span>© <span id="anio">2026</span> Facundo Duarte · Paysandú, Uruguay</span>
+      <a class="arriba" href="#contenido">Volver arriba ↑</a>
       <span>HTML, CSS y un poco de JavaScript. Sin plantillas.</span>
     </div>
   </footer>
