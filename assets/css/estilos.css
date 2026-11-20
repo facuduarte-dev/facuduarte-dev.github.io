@@ -333,7 +333,8 @@ ul { margin: 0; padding: 0; }
 
 /* Diagrama por pasos de ParkEx */
 .recorrido { margin-top: 22px; border: 1px solid var(--filete); border-radius: var(--radio); padding: clamp(16px, 3vw, 28px); }
-.recorrido-pasos { list-style: none; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; }
+.recorrido-pasos li { margin: 0 !important; }
+.recorrido-pasos { list-style: none; padding: 0 !important; margin: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; }
 .recorrido-pasos button {
   width: 100%; height: 100%; text-align: left; font: 500 14px/1.3 var(--sans); color: var(--tinta);
   background: var(--gris-claro); border: 1px solid transparent; border-radius: 6px; padding: 12px; cursor: pointer;
@@ -376,10 +377,44 @@ ul { margin: 0; padding: 0; }
 
 @media (max-width: 560px) {
   body { font-size: 16px; }
-  .nav { gap: 14px; font-size: 14px; }
-  .nav .opcional { display: none; }
+
+  /* Menú: las cuatro secciones visibles, con zona táctil cómoda */
+  .marca { padding: 10px 0; }
+  .nav { gap: 2px; font-size: 14px; margin-right: -8px; }
+  .nav a { padding: 12px 6px; }
+
+  /* Pestañas del visor en una sola fila */
+  .visor-pestanas { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+  .visor-pestanas button { min-height: 44px; padding: 8px 6px; font-size: 13px; text-align: center; }
+  .recorrido-control button { min-height: 44px; flex: 1; }
+  .correo { display: inline-block; padding-block: 8px; overflow-wrap: anywhere; }
+  .visor-pestanas button span { display: none; }
+
+  /* Tabla de conocimientos: cada fila como bloque */
+  .stack table, .stack tbody, .stack tr, .stack th, .stack td { display: block; width: auto; }
+  .stack tr { padding: 14px 0; border-top: 1px solid var(--filete); }
+  .stack th, .stack td { border-top: 0; padding: 0; }
+  .stack th { font-size: 17px; margin-bottom: 4px; }
+  .stack td:last-child { font-size: 14px; margin-top: 2px; }
+  .stack td:last-child::before { content: "Dónde: "; }
+
+  /* Enlaces y botones con zona táctil de al menos 44 px */
+  .acciones { gap: 0 20px; }
+  .acciones a, .otros a, .contacto-fila .enlace, .pie a { display: inline-block; padding-block: 11px; }
+  .evidencia li { padding: 0; }
+  .evidencia a { display: block; padding-block: 12px; }
+  .volver { display: inline-block; padding-block: 11px; }
+  .visor-grande p { flex-wrap: wrap; }
+
   .figura-doble, .dupla { grid-template-columns: minmax(0, 1fr); }
-  .stack th { width: 34%; }
+  .portada h1 { font-size: clamp(60px, 19vw, 120px); }
+  .caso-portada h1 { font-size: clamp(56px, 19vw, 120px); }
+  .ficha dd { font-size: 14px; }
+  .consola { font-size: 12.5px; }
+}
+
+@media (max-width: 340px) {
+  .nav .opcional { display: none; }
 }
 
 @media print {
